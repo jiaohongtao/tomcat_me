@@ -6,16 +6,45 @@
 </head>
 <body>
 
-<button id="increase">增加使用内存</button>
-<button id="decrease">降低使用内存</button>
-
+<button id="increaseTwo">增加使用内存(≈2M)</button>
+<button id="increaseTwenty">增加使用内存(≈20M)</button>
+<button id="increaseTwoHundred">增加使用内存(≈200M)</button>
+<!--<button id="decrease">降低使用内存</button>-->
+<br>
+<!--<input id="inputIncrease" type="text"/>
+<button id="increaseInput">增加指定内存</button>-->
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 
-    $("#increase").click(function () {
+    $("#increaseInput").click(function () {
         $.ajax({
-            url: "/increase",
+            url: "/increaseInput",
+            data: $("#increaseInput").value,
+            success: function (result) {
+                console.log(result);
+            }
+        })
+    });
+    $("#increaseTwo").click(function () {
+        $.ajax({
+            url: "/increaseTwo",
+            success: function (result) {
+                console.log(result);
+            }
+        })
+    });
+    $("#increaseTwenty").click(function () {
+        $.ajax({
+            url: "/increaseTwenty",
+            success: function (result) {
+                console.log(result);
+            }
+        })
+    });
+    $("#increaseTwoHundred").click(function () {
+        $.ajax({
+            url: "/increaseTwoHundred",
             success: function (result) {
                 console.log(result);
             }

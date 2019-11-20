@@ -20,15 +20,49 @@ public class MemoryController {
 
 	private static List<Object> list = new LinkedList<>();
 
-	@RequestMapping("/increase")
+	@RequestMapping("/increaseInput")
 	@ResponseBody
-	public String increase() {
+	public String increaseInput(long input) {
+
+		for (int i = 0; i < input; i++) {
+			list.add(new Object());
+		}
+		getMemory();
+		return "增加使用内存(2M)成功";
+	}
+
+
+	@RequestMapping("/increaseTwo")
+	@ResponseBody
+	public String increaseTwo() {
 
 		for (int i = 0; i < 50000; i++) {
 			list.add(new Object());
 		}
 		getMemory();
-		return "增加使用内存成功";
+		return "增加使用内存(2M)成功";
+	}
+
+	@RequestMapping("/increaseTwenty")
+	@ResponseBody
+	public String increaseTwenty() {
+
+		for (int i = 0; i < 500000; i++) {
+			list.add(new Object());
+		}
+		getMemory();
+		return "增加使用内存(20M)成功";
+	}
+
+	@RequestMapping("/increaseTwoHundred")
+	@ResponseBody
+	public String increaseTwoHundred() {
+
+		for (int i = 0; i < 5000000; i++) {
+			list.add(new Object());
+		}
+		getMemory();
+		return "增加使用内存(2M)成功";
 	}
 
 	@RequestMapping("/decrease")
