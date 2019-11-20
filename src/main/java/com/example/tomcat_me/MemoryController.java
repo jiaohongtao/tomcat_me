@@ -62,7 +62,7 @@ public class MemoryController {
 			list.add(new Object());
 		}
 		getMemory();
-		return "增加使用内存(2M)成功";
+		return "增加使用内存(200M)成功";
 	}
 
 	@RequestMapping("/decrease")
