@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试tomcat</title>
+</head>
+<body>
+
+<button id="increase">增加使用内存</button>
+<button id="decrease">降低使用内存</button>
+
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+
+    $("#increase").click(function () {
+        $.ajax({
+            url: "/increase",
+            success: function (result) {
+                console.log(result);
+            }
+        })
+    });
+
+    $("#decrease").click(function () {
+        $.ajax({
+            url: "/decrease",
+            success: function (result) {
+                console.log(result);
+            }
+        })
+    })
+</script>
+</body>
+</html>
