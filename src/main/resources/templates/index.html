@@ -2,49 +2,118 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>测试tomcat</title>
+    <title>测试tomcat内存使用</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
 
 <button id="increaseTwo">增加使用内存(≈2M)</button>
 <button id="increaseTwenty">增加使用内存(≈20M)</button>
 <button id="increaseTwoHundred">增加使用内存(≈200M)</button>
+<button id="releaseMe">释放使用的内存</button>
 <!--<button id="decrease">降低使用内存</button>-->
 <br>
+<br>
+<br>
+
+<!--<p>${request.contextPath}</p>
+<p>${pageContext.request.contextPath}</p>-->
+<p></p>
 <!--<input id="inputIncrease" type="text"/>
 <button id="increaseInput">增加指定内存</button>-->
 
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<table border="1" width="500">
+    <thead></thead>
+    <tbody align="center">
+    <tr>
+        <!--<th height="50">初始的总内存</th>-->
+        <th height="50">剩余可用内存</th>
+        <th height="50">最大可用内存</th>
+        <th height="50">已使用的内存</th>
+    </tr>
+    <tr>
+        <!--<td id="TotalMemory" height="50"></td>-->
+        <td id="FreeMemory" height="50"></td>
+        <td id="MaxMemory" height="50"></td>
+        <td id="UsedMemory" height="50"></td>
+    </tr>
+    </tbody>
+</table>
+
 <script type="text/javascript">
 
-    $("#increaseInput").click(function () {
+
+    $("#releaseMe").click(function () {
         $.ajax({
-            url: "/increaseInput",
-            data: $("#increaseInput").value,
+            url: getRootPath_web() + "/releaseMe",
             success: function (result) {
                 console.log(result);
+                $("#FreeMemory").text(result.memory.FreeMemory);
+                $("#MaxMemory").text(result.memory.MaxMemory);
+                $("#UsedMemory").text(result.memory.UsedMemory);
+                alert(result.sign);
             }
+
         })
     });
+
+    //获取项目根路径
+    function getRootPath_web() {
+        //获取当前网址，如： http://localhost:8083/uimcardprj/share/meun.jsp
+        var curWwwPath = window.document.location.href;
+        //获取主机地址之后的目录，如： uimcardprj/share/meun.jsp
+        var pathName = window.document.location.pathname;
+        var pos = curWwwPath.indexOf(pathName);
+        //获取主机地址，如： http://localhost:8083
+        var localhostPaht = curWwwPath.substring(0, pos);
+        //获取带"/"的项目名，如：/uimcardprj
+        var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+        return (localhostPaht + projectName);
+    }
+
     $("#increaseTwo").click(function () {
         $.ajax({
-            url: "/increaseTwo",
+            url: getRootPath_web() + "/increaseTwo",
             success: function (result) {
                 console.log(result);
+                // $("#TotalMemory").text(result.memory.TotalMemory);
+                $("#FreeMemory").text(result.memory.FreeMemory);
+                $("#MaxMemory").text(result.memory.MaxMemory);
+                $("#UsedMemory").text(result.memory.UsedMemory);
+                /*console.log(result.sign);
+                console.log(result.memory.FreeMemory);*/
             }
         })
     });
     $("#increaseTwenty").click(function () {
         $.ajax({
-            url: "/increaseTwenty",
+            url: getRootPath_web() + "/increaseTwenty",
             success: function (result) {
                 console.log(result);
+                // $("#TotalMemory").text(result.memory.TotalMemory);
+                $("#FreeMemory").text(result.memory.FreeMemory);
+                $("#MaxMemory").text(result.memory.MaxMemory);
+                $("#UsedMemory").text(result.memory.UsedMemory);
             }
         })
     });
     $("#increaseTwoHundred").click(function () {
         $.ajax({
-            url: "/increaseTwoHundred",
+            url: getRootPath_web() + "/increaseTwoHundred",
+            success: function (result) {
+                console.log(result);
+                // $("#TotalMemory").text(result.memory.TotalMemory);
+                $("#FreeMemory").text(result.memory.FreeMemory);
+                $("#MaxMemory").text(result.memory.MaxMemory);
+                $("#UsedMemory").text(result.memory.UsedMemory);
+            }
+        })
+    });
+
+    $("#increaseInput").click(function () {
+        $.ajax({
+            url: getRootPath_web() + "/increaseInput",
+            data: $("#increaseInput").value,
             success: function (result) {
                 console.log(result);
             }
@@ -53,7 +122,7 @@
 
     $("#decrease").click(function () {
         $.ajax({
-            url: "/decrease",
+            url: getRootPath_web() + "/decrease",
             success: function (result) {
                 console.log(result);
             }
