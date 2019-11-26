@@ -35,46 +35,71 @@ public class MemoryController {
 	}
 
 
+	private Integer getFree () {
+		String freeStr = getMemory().getString("FreeMemory");
+		String free = freeStr.substring(0, freeStr.length() - 1);
+		return Integer.valueOf(free);
+	}
+
 	@RequestMapping("/increaseTwo")
 	@ResponseBody
 	public Object increaseTwo() {
+		JSONObject object = new JSONObject();
 
-		for (int i = 0; i < 50000; i++) {
-			list.add(new Object());
+		if (getFree() < 2) {
+			// object.put("free", getFree());
+			object.put("noMore", false);
+			return object;
+		} else {
+			for (int i = 0; i < 50000; i++) {
+				list.add(new Object());
+			}
+			object.put("sign", "增加使用内存(2M)成功");
+			object.put("memory", getMemory());
+			object.put("noMore", true);
+			return object;
 		}
 
-		JSONObject object = new JSONObject();
-		object.put("sign", "增加使用内存(2M)成功");
-		object.put("memory", getMemory());
-		return object;
 	}
 
 	@RequestMapping("/increaseTwenty")
 	@ResponseBody
 	public Object increaseTwenty() {
-
-		for (int i = 0; i < 500000; i++) {
-			list.add(new Object());
-		}
-
 		JSONObject object = new JSONObject();
-		object.put("sign", "增加使用内存(2M)成功");
-		object.put("memory", getMemory());
-		return object;
+		if (getFree() < 20) {
+			// object.put("free", getFree());
+			object.put("noMore", false);
+			return object;
+		} else {
+			for (int i = 0; i < 500000; i++) {
+				list.add(new Object());
+			}
+
+			object.put("sign", "增加使用内存(20M)成功");
+			object.put("memory", getMemory());
+			object.put("noMore", true);
+			return object;
+		}
 	}
 
 	@RequestMapping("/increaseTwoHundred")
 	@ResponseBody
 	public Object increaseTwoHundred() {
-
-		for (int i = 0; i < 5000000; i++) {
-			list.add(new Object());
-		}
-
 		JSONObject object = new JSONObject();
-		object.put("sign", "增加使用内存(2M)成功");
-		object.put("memory", getMemory());
-		return object;
+		if (getFree() < 200) {
+			// object.put("free", getFree());
+			object.put("noMore", false);
+			return object;
+		} else {
+			for (int i = 0; i < 5000000; i++) {
+				list.add(new Object());
+			}
+
+			object.put("sign", "增加使用内存(200M)成功");
+			object.put("memory", getMemory());
+			object.put("noMore", true);
+			return object;
+		}
 	}
 
 	@RequestMapping("/releaseMe")
@@ -112,7 +137,7 @@ public class MemoryController {
 		return "index";
 	}
 
-	private Object getMemory() {
+	private JSONObject getMemory() {
 		MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
 
 		MemoryUsage memoryUsage = memoryMXBean.getHeapMemoryUsage(); //堆内存使用情况

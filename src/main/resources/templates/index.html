@@ -76,12 +76,17 @@
             url: getRootPath_web() + "/increaseTwo",
             success: function (result) {
                 console.log(result);
-                // $("#TotalMemory").text(result.memory.TotalMemory);
-                $("#FreeMemory").text(result.memory.FreeMemory);
-                $("#MaxMemory").text(result.memory.MaxMemory);
-                $("#UsedMemory").text(result.memory.UsedMemory);
-                /*console.log(result.sign);
-                console.log(result.memory.FreeMemory);*/
+                if (!result.noMore) {
+                    console.log("内存已到达临界值，不再增加");
+                    alert("内存已到达临界值，不再增加");
+                } else {
+                    // $("#TotalMemory").text(result.memory.TotalMemory);
+                    $("#FreeMemory").text(result.memory.FreeMemory);
+                    $("#MaxMemory").text(result.memory.MaxMemory);
+                    $("#UsedMemory").text(result.memory.UsedMemory);
+                    /*console.log(result.sign);
+                    console.log(result.memory.FreeMemory);*/
+                }
             }
         })
     });
@@ -90,10 +95,15 @@
             url: getRootPath_web() + "/increaseTwenty",
             success: function (result) {
                 console.log(result);
-                // $("#TotalMemory").text(result.memory.TotalMemory);
-                $("#FreeMemory").text(result.memory.FreeMemory);
-                $("#MaxMemory").text(result.memory.MaxMemory);
-                $("#UsedMemory").text(result.memory.UsedMemory);
+                if (!result.noMore) {
+                    console.log("内存已到达临界值，不再增加");
+                    alert("内存已到达临界值，不再增加");
+                } else {
+                    // $("#TotalMemory").text(result.memory.TotalMemory);
+                    $("#FreeMemory").text(result.memory.FreeMemory);
+                    $("#MaxMemory").text(result.memory.MaxMemory);
+                    $("#UsedMemory").text(result.memory.UsedMemory);
+                }
             }
         })
     });
@@ -102,10 +112,15 @@
             url: getRootPath_web() + "/increaseTwoHundred",
             success: function (result) {
                 console.log(result);
-                // $("#TotalMemory").text(result.memory.TotalMemory);
-                $("#FreeMemory").text(result.memory.FreeMemory);
-                $("#MaxMemory").text(result.memory.MaxMemory);
-                $("#UsedMemory").text(result.memory.UsedMemory);
+                if (!result.noMore) {
+                    console.log("内存已到达临界值，不再增加");
+                    alert("内存已到达临界值，不再增加");
+                } else {
+                    // $("#TotalMemory").text(result.memory.TotalMemory);
+                    $("#FreeMemory").text(result.memory.FreeMemory);
+                    $("#MaxMemory").text(result.memory.MaxMemory);
+                    $("#UsedMemory").text(result.memory.UsedMemory);
+                }
             }
         })
     });
